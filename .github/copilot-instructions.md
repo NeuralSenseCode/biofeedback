@@ -125,3 +125,37 @@ If anything here is unclear or you'd like the document to mention additional fil
 ----
 
 Please review and tell me if you'd like the document to include more examples, CI hooks, or an alternate metrics-only run mode.
+
+# EEG Signal Findings
+
+## Device & Setup
+- **Device:** PLUX EEG (3 electrodes: 1 ground + 2 active sites)
+- **Electrode placement used:** F3 and F4 (frontal left/right)
+- **Signal type:** Device outputs the **difference** between electrodes (F4 − F3)
+- **Channels:**
+  - Channel 0 → noisy, not useful
+  - Channel 1 → valid EEG difference (F4 − F3)
+- **Sampling rate:** Permanently set to **500 Hz**
+
+---
+
+## Signal Characteristics
+- Channel 1 (F4 − F3) ranges between **−40 µV to +40 µV**
+- This range suggests the hardware is already performing a differential measurement
+- Eye blinks appear as large slow deflections in the raw trace, but:
+  - Detection is **possible but unreliable** due to variability and noise
+  - Blink detection is not suitable for a **high-success demo context**
+
+---
+
+## Signal Processing Learnings
+### Preprocessing
+- Use **channel 1 only**  
+- Band-pass filters are helpful:
+  - **Blink visualization:** 0.5–4 Hz
+  - **Alpha (calm):** 8–12 Hz
+  - **Theta:** 4–7 Hz
+  - **Beta (focus):** 15–25 Hz
+  - **High frequency noise:** 20–35 Hz
+- For artifact-free metrics, apply smoothing:
+  - Exponential Moving Average (EMA) with α ≈ 0.2
