@@ -2,13 +2,52 @@
 
 ## Project Overview
 
-This project contains Python utilities for EEG biofeedback visualization and data collection, including a real-time dashboard and a demo game using EEG signals.
+This repository provides Python tools for EEG biofeedback visualization and experimentation. It includes:
+- **eeg_bandpass_viewer.py**: A real-time dashboard for visualizing EEG band activity (Calm & Focus metrics).
+- **eeg_scroller_game.py**: An interactive game controlled by EEG signals, featuring blink calibration and real-time feedback.
+- Additional utilities for data inspection and debugging.
 
 ## Getting Started
 
-- Install requirements: `pip install numpy scipy pylsl`
-- Run in demo mode: `python eeg_bandpass_viewer.py --demo`
-- Run the game: `python eeg_scroller_game.py --demo`
+### Prerequisites
+- Python 3.8+
+- [pip](https://pip.pypa.io/en/stable/)
+
+### Installation
+1. Clone this repository:
+	```sh
+	git clone <your-repo-url>
+	cd Biofeedback
+	```
+2. Install dependencies:
+	```sh
+	pip install numpy scipy matplotlib pylsl
+	```
+
+### Running the Dashboard (Demo Mode)
+No EEG hardware required:
+```sh
+python eeg_bandpass_viewer.py --demo
+```
+
+### Running the EEG Scroller Game (Demo Mode)
+No EEG hardware required:
+```sh
+python eeg_scroller_game.py --demo
+```
+
+### Running with Real EEG Hardware
+- Connect your EEG device and ensure an LSL stream is available (e.g., OpenSignals, 2 channels).
+- Example:
+  ```sh
+  python eeg_bandpass_viewer.py --stream-name "OpenSignals" --expect-ch 2
+  python eeg_scroller_game.py --stream-name "OpenSignals" --expect-ch 2
+  ```
+
+## File Overview
+- `eeg_bandpass_viewer.py`: Live Calm & Focus dashboard (Matplotlib UI, LSL or demo mode)
+- `eeg_scroller_game.py`: EEG-controlled game with blink calibration and real-time feedback
+- `eeg_runner.py`, `neuro_debug_scope.py`, `neurobloom_lite.py`, `debug.py`: Auxiliary tools for data inspection and debugging
 
 ## Project Learnings and Closing Notes
 
