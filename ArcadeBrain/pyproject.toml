@@ -1,0 +1,25 @@
+
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "eeg-scroller"
+version = "0.1.0"
+description = "EEG-driven 2D scroller built with Arcade"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "arcade>=3.0.0",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pylsl>=1.16.2",
+  "pydantic>=2.7",
+  "watchdog>=4.0.0",
+]
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+select = ["E","F","I","UP"]
