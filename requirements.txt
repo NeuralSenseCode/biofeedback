@@ -1,5 +1,12 @@
-numpy
+arcade>=3.0.0
+numpy>=1.26
+scipy>=1.11
+pylsl>=1.16.2
+pydantic>=2.7
+watchdog>=4.0.0
 matplotlib
-scipy
-pylsl
 pygame
+pytest
+black
+ruff
+mypy
