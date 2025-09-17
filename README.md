@@ -10,39 +10,48 @@ This repository provides Python tools for EEG biofeedback visualization and expe
 ## Getting Started
 
 ### Prerequisites
-- Python 3.8+
+- Windows, macOS or Linux with Python 3.8+
 - [pip](https://pip.pypa.io/en/stable/)
 
-### Installation
-1. Clone this repository:
-	```sh
-	git clone <your-repo-url>
-	cd Biofeedback
-	```
-2. Install dependencies:
-	```sh
-	pip install numpy scipy matplotlib pylsl
-	```
+### Quick start (Windows PowerShell)
 
-### Running the Dashboard (Demo Mode)
-No EEG hardware required:
-```sh
-python eeg_bandpass_viewer.py --demo
+1) Create & activate the virtual environment (this repo uses `.venv` by default):
+
+```powershell
+# create venv (if you haven't already)
+python -m venv .venv
+# activate
+. .venv\Scripts\Activate.ps1
 ```
 
-### Running the EEG Scroller Game (Demo Mode)
-No EEG hardware required:
-```sh
-python eeg_scroller_game.py --demo
+2) Install dependencies (from `requirements.txt` if present):
+
+```powershell
+.venv\Scripts\python -m pip install -r requirements.txt
+# or install minimal deps
+.venv\Scripts\python -m pip install numpy scipy matplotlib pylsl
 ```
 
-### Running with Real EEG Hardware
-- Connect your EEG device and ensure an LSL stream is available (e.g., OpenSignals, 2 channels).
-- Example:
-  ```sh
-  python eeg_bandpass_viewer.py --stream-name "OpenSignals" --expect-ch 2
-  python eeg_scroller_game.py --stream-name "OpenSignals" --expect-ch 2
-  ```
+3) Run the dashboard in demo (software-only) mode:
+
+```powershell
+.venv\Scripts\python eeg_bandpass_viewer.py --demo
+```
+
+4) Run the EEG scroller game in demo mode:
+
+```powershell
+.venv\Scripts\python eeg_scroller_game.py --demo
+```
+
+Notes:
+- The project assumes Matplotlib's TkAgg backend on Windows by default. If running headless (CI), switch Matplotlib's backend to `Agg`.
+- To run with a real device, stream your device to an LSL endpoint (for example OpenSignals) and run without `--demo`, e.g.:
+
+```powershell
+.venv\Scripts\python eeg_bandpass_viewer.py --stream-name "OpenSignals" --expect-ch 2
+.venv\Scripts\python eeg_scroller_game.py --stream-name "OpenSignals" --expect-ch 2
+```
 
 ## File Overview
 - `eeg_bandpass_viewer.py`: Live Calm & Focus dashboard (Matplotlib UI, LSL or demo mode)
